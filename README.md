@@ -19,11 +19,5 @@ Angular-cli
 Font-awesome
 Spring-boot
 
-## Cupom de desconto para testes
-
-dis5 -> 5% de desconto\
-dis10 -> 10% de desconto\
-dis20 -> 20% de desconto
-
 
 
