@@ -1,0 +1,22 @@
+<div class="movie-details-container">
+    <div class="movie-img">
+        <img src="{{movie.imagePath}}" alt="{{movie.title}}"/>
+    </div>
+    <div class="movie-details">
+        <div>
+            <button>Play <fa-icon [icon]="faPlay"></fa-icon></button>
+            <button>Mais informações</button>
+            <button routerLink="/">Voltar</button>
+            <h1>
+                {{movie.title}}
+            </h1>
+
+            <h2>
+                {{movie.author}}
+            </h2>
+            <h3>
+                {{movie.description}}
+            </h3>
+        </div>
+    </div>
+</div>

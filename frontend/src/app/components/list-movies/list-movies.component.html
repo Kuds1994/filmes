@@ -1,0 +1,30 @@
+
+<div class="product-list-header">
+  <h1>Veja os últimos filmes</h1>
+</div>
+
+<div class="product-list">  
+  
+    <div class="product" *ngFor="let movie of movies">
+
+      <a routerLink="/movie/{{movie.id}}">
+
+
+      <img src="{{movie.imagePath}}"  alt="">
+
+      <fa-icon [icon]="faStar" [ngStyle]="{'font-size': '10px', 'color': 'rgb(255, 102, 0)'}"></fa-icon>
+      <fa-icon [icon]="faStar" [ngStyle]="{'font-size': '10px', 'color': 'rgb(255, 102, 0)'}"></fa-icon>
+      <fa-icon [icon]="faStar" [ngStyle]="{'font-size': '10px', 'color': 'rgb(255, 102, 0)'}"></fa-icon>
+      <fa-icon [icon]="faStar" [ngStyle]="{'font-size': '10px', 'color': 'rgb(255, 102, 0)'}"></fa-icon>
+      <fa-icon [icon]="faStar" [ngStyle]="{'font-size': '10px', 'color': 'rgb(255, 102, 0)'}"></fa-icon>
+
+      <div class="product-description">
+        {{movie.title}}
+      </div>
+
+      </a>
+      
+
+    </div>
+    
+</div>
