@@ -1,6 +1,13 @@
-# Filesm
+# Files
 
 O projeto foi desenvolvido na versão 15.1.1
+
+O projeto possui 3 páginas: Listagem dos filmes, visualizar filme individualmente, e adicionar novo filme.
+
+Listagem dos filmes é a página principal do projeto que contém os filmes cadastrados.
+Página de visualização de filme individual mostra as caracteristicas dos filmes como cover, autor e sinopse. Para acessar a página, basta clicar em cima da imagem do filme.
+Para adicionar um novo filme, é so clickar no botão de novo filme no canto superior direito da tela.
+Na tela, é preciso botar um título, autor, descrição e a imagem do filme. A imagem precisa ser abaixo de 1MB para fazer o upload.
 
 ## Development server - frontend
 
@@ -18,6 +25,7 @@ Quando o jar for gerado, executar o comando java -jar nome_do_jar.jar
 Angular-cli
 Font-awesome
 Spring-boot
+AWS
 
 
 
