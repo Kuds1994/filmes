@@ -17,6 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { MovieListPageComponent } from './pages/movie-list-page/movie-list-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateMovieComponent } from './pages/create-movie/create-movie.component';
+import { UpdateMovieComponent } from './pages/update-movie/update-movie.component'; 
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CreateMovieComponent } from './pages/create-movie/create-movie.componen
     MovieDetailsComponent,
     MovieListPageComponent,
     CreateMovieComponent,
+    UpdateMovieComponent,
   ],
   imports: [
     BrowserModule,

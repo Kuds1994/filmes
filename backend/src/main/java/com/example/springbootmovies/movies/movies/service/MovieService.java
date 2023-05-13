@@ -65,15 +65,19 @@ public class MovieService {
     return convertToDto(movie);
   }
 
-  public void updateMovie(UUID id, MoviesDto movieDto)
+  public MoviesDto updateMovie(UUID id, MoviesDto movieDto, MultipartFile multipartFile)
     throws NoSuchAlgorithmException {
     var movie = findOrThrow(id);
     var movieParam = convertToEntity(movieDto);
 
-    movie.setDescription(movieParam.getDescription());
-    movie.setImagePath(movieParam.getImagePath());
+    String name = filesStorageService.saveImage(multipartFile);
 
-    repo.save(movieParam);
+    movieParam.setId(movie.getId());
+    movieParam.setImagePath(name);
+
+    MoviesEntity m = repo.save(movieParam);
+
+    return convertToDto(m);
   }
 
   public void removeUserById(UUID id) {

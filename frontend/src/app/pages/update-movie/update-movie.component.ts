@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
+import { Movie } from 'src/app/core/models/movie';
 import { MovieService } from 'src/app/core/services/movies/movie.service';
 
 @Component({
-  selector: 'app-create-movie',
-  templateUrl: './create-movie.component.html',
-  styleUrls: ['./create-movie.component.css']
+  selector: 'app-update-movie',
+  templateUrl: './update-movie.component.html',
+  styleUrls: ['./update-movie.component.css']
 })
-export class CreateMovieComponent {
+export class UpdateMovieComponent {
 
   formulario: FormGroup = this.formBuilder.group({
     title: ['', Validators.required],
@@ -17,8 +20,10 @@ export class CreateMovieComponent {
   })
 
   file = ""
-  botao = "Cadastrar"
+  botao = "Atualizar"
   error = ""
+
+  movie!: Movie; 
 
 
   onFileSelected(event: any) {
@@ -34,7 +39,7 @@ export class CreateMovieComponent {
       return;
     }
 
-    this.botao = "Salvando..."
+    this.botao = "Atualizando..."
 
     const formData = new FormData();
 
@@ -47,19 +52,19 @@ export class CreateMovieComponent {
     formData.append("image", this.file)
     formData.append("author", author)
 
-    this.movieService.saveMovie(formData).subscribe({
+    this.movieService.updateMovie(formData, this.movie.id).subscribe({
 
       next: (n) => {
 
-        this.botao = "Cadastrar"
-        this.error = "Cadastrado com sucesso!"
+        this.botao = "Atualizar"
+        this.error = "Atualizado com sucesso!"
 
       },
 
       error: (e) => {
 
-        this.botao = "Cadastrar"
-        this.error = "Erro ao salvar filme"
+        this.botao = "Atualizar"
+        this.error = "Erro ao atualizar o filme"
         this.formulario.controls['title'].setValue('')
         this.formulario.controls['description'].setValue('')
         this.formulario.controls['author'].setValue('')
@@ -78,5 +83,27 @@ export class CreateMovieComponent {
 
   }
 
-  constructor(private formBuilder: FormBuilder, private movieService: MovieService){}
+  constructor(private formBuilder: FormBuilder, private movieService: MovieService, private route: ActivatedRoute, private router: Router){
+
+    const id = this.route.snapshot.paramMap.get('id')!
+    this.movieService.getMovie(id).subscribe({
+      
+      next: (response) =>{
+
+        this.movie = response
+
+        this.formulario.controls['title'].setValue(this.movie.title)
+        this.formulario.controls['description'].setValue(this.movie.description)
+        this.formulario.controls['author'].setValue(this.movie.author)
+
+      },
+      error: (error) =>{
+
+        this.router.navigate(['/'])
+                
+      }
+
+    }) 
+
+  }
 }

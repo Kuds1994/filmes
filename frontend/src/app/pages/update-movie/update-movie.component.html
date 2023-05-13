@@ -1,0 +1,43 @@
+<div class="create-movie">
+    <form class="create-movie-container" [formGroup]="formulario" (ngSubmit)="saveMovie()">
+        <h1>Cadastro de filmes</h1>
+        <div class="personal-data">
+            <label for="title">
+                Nome do filme
+            </label>
+            <input type="text" formControlName="title" class="large" name="title" id="title">
+            <div *ngIf="formulario.get('title')?.errors && (formulario.get('title')?.touched || formulario.get('title')?.dirty)"
+                style="color: red;">
+                Preencha o nome do filme
+            </div>
+            <label for="author">
+                Nome do autor
+            </label>
+            <input type="text" formControlName="author" class="large" name="author" id="author">
+            <div *ngIf="formulario.get('author')?.errors && (formulario.get('author')?.touched || formulario.get('author')?.dirty)"
+                style="color: red;">
+                Preencha o nome do autor
+            </div>
+            <label for="description">
+                Digite a descrição do filme
+            </label>
+            <textarea rows="5" formControlName="description" class="large" name="description"></textarea>
+            <div *ngIf="formulario.get('description')?.errors?.['required'] && (formulario.get('description')?.touched || formulario.get('description')?.dirty)" style="color: red;">
+                Preencha a descrição do filme
+            </div>
+            <label for="file">
+                Selecione a imagem do filme
+            </label>
+            <input type="file" accept="image/*" formControlName="file" class="large" name="file" (change)="onFileSelected($event)" #fileUpload>
+            <div *ngIf="formulario.get('file')?.errors?.['required'] && (formulario.get('file')?.touched || formulario.get('files')?.dirty)" style="color: red;">
+                Selecione a imagem do filme
+            </div>
+        </div>
+    
+        <button>{{botao}}</button>
+        <div>{{error}}</div>
+
+    </form>
+
+</div>
+

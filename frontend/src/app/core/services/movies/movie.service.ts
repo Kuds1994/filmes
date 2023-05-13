@@ -16,12 +16,20 @@ export class MovieService {
     return this.httpClient.post<Movie>(this.apiURL + 'movies', movie)
   }
 
+  updateMovie(movie: FormData, id: string): Observable<Movie> {
+    return this.httpClient.put<Movie>(`${this.apiURL}movies/${id}`, movie)
+  }
+
   getMovie(id: string): Observable<Movie> {
     return this.httpClient.get<Movie>(`${this.apiURL}movies/${id}`)
   }
 
   getMovies(): Observable<Movie[]> {
     return this.httpClient.get<Movie[]>(`${this.apiURL}movies/`);
+  }
+
+  deleteMovice(id: string): Observable<Movie> {
+    return this.httpClient.delete<Movie>(`${this.apiURL}movies/${id}`);
   }
 
   errorHandler(error: {

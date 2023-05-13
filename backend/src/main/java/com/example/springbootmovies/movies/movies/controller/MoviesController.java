@@ -50,11 +50,17 @@ public class MoviesController {
     return movieService.createMovie(movieDto, image);
   }
 
-  @PutMapping("{id}")
-  public void putMovie(
-    @PathVariable("id") UUID id,
-    @Valid @RequestBody MoviesDto userDto
-  ) throws NoSuchAlgorithmException {
-    movieService.updateMovie(id, userDto);
+  @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, path = "{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public MoviesDto putMovie(@PathVariable("id") UUID id, @RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("author") String author, @RequestParam("image") MultipartFile image)
+          throws NoSuchAlgorithmException {
+
+    MoviesDto movieDto = new MoviesDto();
+    movieDto.setTitle(title);
+    movieDto.setDescription(description);
+    movieDto.setAuthor(author);
+
+    return movieService.updateMovie(id, movieDto, image);
   }
+
 }

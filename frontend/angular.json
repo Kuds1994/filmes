@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/carrinho_compras",
+            "outputPath": "dist/movies",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

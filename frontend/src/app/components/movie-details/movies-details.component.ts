@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute  } from '@angular/router';
+import { ActivatedRoute, Router  } from '@angular/router';
 import { Movie } from 'src/app/core/models/movie';
 import { MovieService } from 'src/app/core/services/movies/movie.service';
 
@@ -24,7 +24,8 @@ export class MovieDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, 
-    private movieService: MovieService){
+    private movieService: MovieService,
+    private router: Router){
 
     const id = this.route.snapshot.paramMap.get('id')!
     this.movieService.getMovie(id).subscribe({
@@ -47,6 +48,33 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     
+    
   }
+
+  excluirFilme(id: string): void {
+  
+    if(confirm("Deseja excluir o filme " + this.movie.title + "?")){
+
+      this.movieService.deleteMovice(id).subscribe({
+
+        next: (v) => {
+
+          this.router.navigate(['/'])
+
+        },
+
+        error: (err) => {
+
+          alert('Falha ao excluir filme')
+
+        }
+
+      })
+
+    }
+  
+  }
+
+  
 
 }
